@@ -4,9 +4,9 @@ import Colors from '../style/Colors';
 // 가로 큰 상자
 const Container = styled.div`
   width: 100%;
-  height: 89px;
+  height: fit-content;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   padding: 16px;
   border-radius: 4px;
@@ -15,107 +15,77 @@ const Container = styled.div`
 
 // 왼쪽 상자
 const LeftFrame = styled.div`
-  width: 173px;
-  height: 57px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 4px;
 `;
 
 // 병원 종류
 const HospitalType = styled.div`
-  width: 21px;
-  height: 15px;
-  .title {
-    font-family: 'Noto Sans';
-    font-size: 11px;
-    color: ${Colors.BLACK40};
-  }
+  font-family: 'Noto Sans KR Regular';
+  font-size: 11px;
+  color: ${Colors.BLACK40};
 `;
 
 // 병원 이름
 const HospitalName = styled.div`
-  width: 69px;
-  height: 19px;
-  .title {
-    font-family: 'Noto Sans';
-    font-size: 14px;
-    font-weight: 700;
-    color: ${Colors.BLACK100};
-  }
+  font-family: 'Noto Sans KR Bold';
+  font-size: 14px;
+  font-weight: 700;
+  color: ${Colors.BLACK100};
 `;
 
 // 방문시간 & 주소
 const InnerFrame1 = styled.div`
-  width: 100%;
-  height: 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 4px;
 `;
 
 // 방문시간
 const VisitingHours = styled.div`
-  width: 100%;
-  height: 15px;
-  .title {
-    font-family: 'Noto Sans';
-    font-size: 11px;
-    color: ${Colors.BLACK80};
-  }
+  font-family: 'Noto Sans KR Regular';
+  font-size: 11px;
+  color: ${Colors.BLACK80};
 `;
 
 // 주소
 const Address = styled.div`
-  width: 100%;
-  height: 15px;
-  .title {
-    font-family: 'Noto Sans';
-    font-size: 11px;
-    color: ${Colors.BLACK40};
-  }
+  font-family: 'Noto Sans KR Regular';
+  font-size: 11px;
+  color: ${Colors.BLACK40};
 `;
 
 // 오른쪽 상자
 const RightFrame = styled.div`
-  width: 70px;
-  height: 57px;
   display: flex;
-  flex-direction: row;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: space-between;
-  align-content: center;
 `;
 
+// 대기자 수 & 접수 버튼
 const InnerFrame2 = styled.div`
-  width: 100%;
-  height: 15px;
+  width: fit-content;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 4px;
 `;
 
 // "대기자 수:"
 const WaitList = styled.div`
-  width: 47px;
-  height: 15px;
-  .title {
-    font-family: 'Noto Sans';
-    font-size: 11px;
-    color: ${Colors.BLACK60};
-  }
+  font-family: 'Noto Sans KR Regular';
+  font-size: 11px;
+  color: ${Colors.BLACK60};
 `;
 
 // 대기자 수
 const WaitListNum = styled.div`
-  width: 100%;
-  height: 15px;
-  .title {
-    font-family: 'Noto Sans';
-    font-size: 11px;
-    font-weight: 700;
-    color: ${Colors.BLACK100};
-  }
+  font-family: 'Noto Sans KR Regular';
+  font-size: 11px;
+  font-weight: 700;
+  color: ${Colors.BLACK100};
 `;
 
 // 접수 버튼
@@ -132,7 +102,7 @@ const Button = styled.button`
     padding: 4px, 10px, 4px, 10px;
     background-color: ${Colors.POINT_DEEP};
 
-    font-family: 'Noto Sans';
+    font-family: 'Noto Sans KR Regular';
     font-size: 13px;
 
     .title {
@@ -174,7 +144,7 @@ const ListItem = ({
         <HospitalName>{hospitalName}</HospitalName>
         <InnerFrame1>
           <VisitingHours>{visitingHours}</VisitingHours>
-          <Address>{address}</Address>
+          <Address>| {address}</Address>
         </InnerFrame1>
       </LeftFrame>
       <RightFrame>

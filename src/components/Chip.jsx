@@ -1,37 +1,32 @@
+import React from 'react';
 import styled from 'styled-components';
 import Colors from '../style/Colors';
 
 const Button = styled.button`
+  all: unset;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
   cursor: pointer;
   border-width: 1px;
   border-radius: 8px;
-  text-align: center;
+  padding: 4px 8px;
+
+  font-family: 'Noto Sans KR Regular';
+  font-size: 12px;
+  color: ${Colors.WHITE100};
 
   &.main {
-    width: 39px;
-    height: 24px;
-    top: 20px;
-    left: 20px;
-    padding: 4px, 8px, 4px, 8px;
+    color: ${Colors.WHITE100};
     background-color: ${Colors.POINT_DEEP};
-
-    font-family: 'Noto Sans';
-    font-size: 12px;
-
-    .title {
-      color: ${Colors.WHITE100};
-    }
+    border: 1px solid ${Colors.POINT_DEEP};
 
     &.inactive {
+      color: ${Colors.POINT_DEEP};
       background-color: ${Colors.WHITE100};
-      border-color: ${Colors.POINT_MEDIUM};
-      .title {
-        color: ${Colors.POINT_MEDIUM};
-      }
+      border: 1px solid ${Colors.POINT_DEEP};
     }
   }
 `;
@@ -40,7 +35,7 @@ export const ButtonType = {
   MAIN: 'main',
 };
 
-const Chip = ({ label, onClick, inactive = true, buttonType = ButtonType.MAIN }) => {
+const Chip = ({ label, onClick, inactive = false, buttonType = ButtonType.MAIN }) => {
   const buttonClassName = `${buttonType} ${inactive ? 'inactive' : ''}`;
   const handleClick = () => {
     if (!inactive) onClick();

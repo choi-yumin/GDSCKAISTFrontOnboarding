@@ -13,4 +13,6 @@ const router = createBrowserRouter(
   ),
 );
 
+// add '/my'
+
 export default router;

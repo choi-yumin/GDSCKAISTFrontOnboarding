@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Colors from '../../style/Colors';
 import { Outlet } from 'react-router-dom';
 import MainTopBar from '../../template/MainTopBar';
+import HospitalList from '../../template/HospitalList';
 
 const Container = styled.div`
   width: 100%;
