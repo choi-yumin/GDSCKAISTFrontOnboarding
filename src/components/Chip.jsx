@@ -9,12 +9,13 @@ const Button = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   border-width: 1px;
   border-radius: 8px;
   padding: 4px 8px;
 
-  font-family: 'Noto Sans KR Regular';
+  cursor: pointer;
+
+  font-family: 'Noto Sans KR Medium';
   font-size: 12px;
   color: ${Colors.WHITE100};
 
@@ -26,7 +27,7 @@ const Button = styled.button`
     &.inactive {
       color: ${Colors.POINT_DEEP};
       background-color: ${Colors.WHITE100};
-      border: 1px solid ${Colors.POINT_DEEP};
+      border: 1px solid ${Colors.POINT_MEDIUM};
     }
   }
 `;

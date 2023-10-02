@@ -44,7 +44,17 @@ const HospitalList = () => {
         hospitalName="이희찬 내과"
         visitingHours="오늘 09:00 ~ 18:00"
         address="대전 서구 만년동"
-        waitListNum={'3명'}
+        waitListNum="2명"
+        inactive={false}
+      />
+
+      <ListItem
+        hospitalType="이비인후과"
+        hospitalName="구글 이비인후과"
+        visitingHours="오늘 휴무"
+        address="대전 서구 월평동"
+        waitListNum="-"
+        inactive
       />
     </Container>
   );

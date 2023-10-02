@@ -3,11 +3,11 @@ import Colors from '../style/Colors';
 
 // 가로 큰 상자
 const Container = styled.div`
-  width: 100%;
-  height: fit-content;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
+  height: fit-content;
   padding: 16px;
   border-radius: 4px;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
@@ -44,14 +44,14 @@ const InnerFrame1 = styled.div`
 
 // 방문시간
 const VisitingHours = styled.div`
-  font-family: 'Noto Sans KR Regular';
+  font-family: 'Noto Sans KR Medium';
   font-size: 11px;
-  color: ${Colors.BLACK80};
+  color: ${props => (props.isClosed ? Colors.POINT_DEEP : Colors.BLACK80)};
 `;
 
 // 주소
 const Address = styled.div`
-  font-family: 'Noto Sans KR Regular';
+  font-family: 'Noto Sans KR Medium';
   font-size: 11px;
   color: ${Colors.BLACK40};
 `;
@@ -59,17 +59,17 @@ const Address = styled.div`
 // 오른쪽 상자
 const RightFrame = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: space-between;
+  height: 100%;
 `;
 
 // 대기자 수 & 접수 버튼
 const InnerFrame2 = styled.div`
-  width: fit-content;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: fit-content;
   gap: 4px;
 `;
 
@@ -90,30 +90,30 @@ const WaitListNum = styled.div`
 
 // 접수 버튼
 const Button = styled.button`
-  //display: flex;
-  //flex-direction: column;
-  justify-content: space-between;
+  all: unset;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 30px;
   border-radius: 4px;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+  padding: 4px, 10px, 4px, 10px;
+  cursor: pointer;
+
+  font-family: 'Noto Sans KR Bold';
+  font-size: 13px;
+  color: ${Colors.WHITE100};
+  background-color: ${Colors.POINT_DEEP};
 
   &.main {
-    width: 70px;
-    height: 30px;
-    padding: 4px, 10px, 4px, 10px;
+    color: ${Colors.WHITE100};
     background-color: ${Colors.POINT_DEEP};
 
-    font-family: 'Noto Sans KR Regular';
-    font-size: 13px;
-
-    .title {
-      color: ${Colors.WHITE100};
-    }
-
     &.inactive {
+      color: ${Colors.BLACK40};
       background-color: ${Colors.GREY00};
-      .title {
-        color: ${Colors.BLACK40};
-      }
     }
   }
 `;
@@ -129,13 +129,12 @@ const ListItem = ({
   address,
   waitListNum,
   onClick,
-  inactive = true,
+  inactive = false,
   buttonType = ButtonType.MAIN,
 }) => {
   const buttonClassName = `${buttonType} ${inactive ? 'inactive' : ''}`;
-  const handleClick = () => {
-    if (!inactive) onClick();
-  };
+
+  const isClosed = visitingHours === '오늘 휴무';
 
   return (
     <Container>
@@ -143,7 +142,7 @@ const ListItem = ({
         <HospitalType>{hospitalType}</HospitalType>
         <HospitalName>{hospitalName}</HospitalName>
         <InnerFrame1>
-          <VisitingHours>{visitingHours}</VisitingHours>
+          <VisitingHours isClosed={isClosed}>{visitingHours}</VisitingHours>
           <Address>| {address}</Address>
         </InnerFrame1>
       </LeftFrame>
@@ -152,7 +151,7 @@ const ListItem = ({
           <WaitList>대기자 수: </WaitList>
           <WaitListNum>{waitListNum}</WaitListNum>
         </InnerFrame2>
-        <Button onClick={handleClick} className={buttonClassName}>
+        <Button onClick={onClick} className={buttonClassName}>
           접수하기
         </Button>
       </RightFrame>
@@ -161,3 +160,5 @@ const ListItem = ({
 };
 
 export default ListItem;
+
+// change handleClick to onClick?
