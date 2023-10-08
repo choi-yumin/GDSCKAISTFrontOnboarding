@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import Colors from '../style/Colors';
+import { useState } from 'react';
+import MUIModal from './RegisterModal';
 
 // 가로 큰 상자
 const Container = styled.div`
+  width: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  height: fit-content;
   padding: 16px;
   border-radius: 4px;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
@@ -58,18 +60,18 @@ const Address = styled.div`
 
 // 오른쪽 상자
 const RightFrame = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
 `;
 
 // 대기자 수 & 접수 버튼
 const InnerFrame2 = styled.div`
+  width: fit-content;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: fit-content;
   gap: 4px;
 `;
 
@@ -92,12 +94,12 @@ const WaitListNum = styled.div`
 const Button = styled.button`
   all: unset;
 
+  width: 70px;
+  height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 30px;
   border-radius: 4px;
   padding: 4px, 10px, 4px, 10px;
   cursor: pointer;
@@ -128,13 +130,18 @@ const ListItem = ({
   visitingHours,
   address,
   waitListNum,
-  onClick,
   inactive = false,
   buttonType = ButtonType.MAIN,
 }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const buttonClassName = `${buttonType} ${inactive ? 'inactive' : ''}`;
 
   const isClosed = visitingHours === '오늘 휴무';
+
+  const handleClick = () => {
+    setModalOpen(true);
+  };
 
   return (
     <Container>
@@ -151,14 +158,13 @@ const ListItem = ({
           <WaitList>대기자 수: </WaitList>
           <WaitListNum>{waitListNum}</WaitListNum>
         </InnerFrame2>
-        <Button onClick={onClick} className={buttonClassName}>
+        <Button onClick={handleClick} className={buttonClassName}>
           접수하기
         </Button>
       </RightFrame>
+      <MUIModal open={isModalOpen} onClose={() => setModalOpen(false)} hospitalName={hospitalName} />
     </Container>
   );
 };
 
 export default ListItem;
-
-// change handleClick to onClick?

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import MUITest from '../components/MUITest';
 import ListItem from '../components/ListItem';
 import Chip from '../components/Chip';
 import Colors from '../style/Colors';
