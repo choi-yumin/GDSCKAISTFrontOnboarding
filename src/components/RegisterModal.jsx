@@ -3,6 +3,8 @@ import { FormControl, MenuItem, Modal, Select, InputLabel, TextField } from '@mu
 import styled from 'styled-components';
 import Colors from '../style/Colors';
 import MUIButton from './RegisterButton';
+import reservationData from '../store/reservationAtom';
+import { useRecoilState } from 'recoil';
 
 // 모달 상자
 const Container = styled.div`
@@ -37,6 +39,22 @@ const HospitalName = styled.div`
 const RegisterModal = ({ open, onClose, hospitalName }) => {
   const [symptom, setSymptom] = useState('');
   const [note, setNote] = useState('');
+  const [reservationList, setReservationList] = useRecoilState(reservationData);
+
+  const handleSubmit = () => {
+    setReservationList([
+      ...reservationList,
+      {
+        hospitalName,
+        symptom,
+        note,
+        reserveTime: new Date(),
+      },
+    ]);
+    setSymptom('');
+    setNote('');
+    onClose();
+  };
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -53,7 +71,7 @@ const RegisterModal = ({ open, onClose, hospitalName }) => {
             sx={{ width: '220px' }}
             label={'증상'}
           >
-            <MenuItem value={'콧통'}>콧물</MenuItem>
+            <MenuItem value={'콧물'}>콧물</MenuItem>
             <MenuItem value={'두통'}>두통</MenuItem>
             <MenuItem value={'복통'}>복통</MenuItem>
           </Select>
@@ -65,7 +83,7 @@ const RegisterModal = ({ open, onClose, hospitalName }) => {
           onChange={e => setNote(e.target.value)}
         />
         <div className="button-area">
-          <MUIButton onClick={onClose} />
+          <MUIButton onClick={handleSubmit} />
         </div>
       </Container>
     </Modal>
